@@ -27,17 +27,17 @@ namespace ExpenseApp.Services
         {
             return _dataProvider.Get();
         }
-        public Expense GetExpense(Guid id)
+        public Expense GetExpense(string id)
         {
             return _dataProvider.GetExpense(id);
         }
 
-        public bool DeleteExpense(Guid id)
+        public bool DeleteExpense(string id)
         {
             return _dataProvider.DeleteExpense(id);
         }
 
-        public bool UpsertExpense(Guid id, Expense expense)
+        public bool UpsertExpense(string id, Expense expense)
         {
             return _dataProvider.UpsertExpense(id, expense); 
         }

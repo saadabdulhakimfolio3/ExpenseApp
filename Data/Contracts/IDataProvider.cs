@@ -6,7 +6,7 @@ public interface IDataProvider
 {
     bool CreateExpense(Expense request);
     public List<Expense> Get();
-    public Expense GetExpense(Guid id);
-    public bool DeleteExpense(Guid id);
-    public bool UpsertExpense(Guid id, Expense expense);
+    public Expense GetExpense(string id);
+    public bool DeleteExpense(string id);
+    public bool UpsertExpense(string id, Expense expense);
 }

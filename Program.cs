@@ -20,12 +20,7 @@ var builder = WebApplication.CreateBuilder(args);
     // Prevents reinstantiation per request.
     // Created for entire lifetime of the application.
     var dbSettings = builder.Configuration.GetSection(nameof(ExpenseStoreDatabaseSettings)).Get<ExpenseStoreDatabaseSettings>();
-
-    //builder.Services.AddSingleton<IExpenseStoreDatabaseSettings>(sp => 
-    //    sp.GetRequiredService<IOptions<ExpenseStoreDatabaseSettings>>());
-    
     builder.Services.AddSingleton<IMongoClient>(s => new MongoClient(dbSettings.ConnectionString));
-    
     builder.Services.AddSingleton<IExpenseService, ExpenseService>();
     builder.Services.AddSingleton<IDataProvider, MongoDataProvider>();
     builder.Services.AddSingleton(dbSettings);

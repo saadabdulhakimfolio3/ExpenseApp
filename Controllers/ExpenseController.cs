@@ -28,8 +28,7 @@ namespace ExpenseApp.Controllers
         {
             // Creating a new expense to add to database based on request.
             // We map the data.
-            var expense = new Expense(Guid.NewGuid(),
-                                        request.Description,
+            var expense = new Expense(  request.Description,
                                         request.Category,
                                         request.Date,
                                         DateTime.UtcNow,
@@ -52,7 +51,7 @@ namespace ExpenseApp.Controllers
         }
 
         [HttpGet("{id:guid}")]
-        public IActionResult GetExpense(Guid id)
+        public IActionResult GetExpense(string id)
         {
             // Getting expense from our database.
             Expense expense = _expenseService.GetExpense(id);
@@ -70,7 +69,7 @@ namespace ExpenseApp.Controllers
         }
 
         [HttpPut("{id:guid}")]
-        public IActionResult UpsertExpenses(Guid id, UpsertExpenseRequest request)
+        public IActionResult UpsertExpenses(string id, UpsertExpenseRequest request)
         {
             // Creating new expense.
             var expense = new Expense(id,
@@ -89,7 +88,7 @@ namespace ExpenseApp.Controllers
         }
 
         [HttpDelete("{id:guid}")]
-        public IActionResult UpsertExpenses(Guid id)
+        public IActionResult UpsertExpenses(string id)
         {
             // Deleting expense from database.
             _expenseService.DeleteExpense(id);

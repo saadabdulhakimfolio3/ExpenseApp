@@ -10,21 +10,29 @@ namespace ExpenseApp.Models
         // Converts MongoDB datatype into .Net Guid datatype.
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public Guid Id{ get; }
+        public string Id{ get; set; }
 
         // Mapping each property to an element in MongoDB.
         [BsonElement("description")]
-        public string Description{ get; }
+        public string Description{ get; set; }
         [BsonElement("category")]
-        public string Category { get; }
+        public string Category { get; set; }
         [BsonElement("date")]
-        public DateTime Date { get; }
+        public DateTime Date { get; set; }
         [BsonElement("lastModified")]
-        public DateTime LastModified{ get; }
+        public DateTime LastModified{ get; set; }
         [BsonElement("ammount")]
-        public int Ammount {  get; }
+        public int Ammount { get; set; }
 
-        public Expense(Guid id, string description, string category, DateTime date, DateTime lastModified, int ammount)
+        public Expense( string description, string category, DateTime date, DateTime lastModified, int ammount)
+        {
+            Description = description;
+            Category = category;
+            Date = date;
+            LastModified = lastModified;
+            Ammount = ammount;
+        }
+        public Expense(string id, string description, string category, DateTime date, DateTime lastModified, int ammount)
         {
             Id = id;
             Description = description;

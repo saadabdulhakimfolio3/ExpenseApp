@@ -43,3 +43,4 @@ F:\Backend-Training\.Net\ExpenseApp\ExpenseApp\bin\Debug\net6.0\ZstdSharp.dll
 F:\Backend-Training\.Net\ExpenseApp\ExpenseApp\bin\Debug\net6.0\runtimes\linux\native\libmongocrypt.so
 F:\Backend-Training\.Net\ExpenseApp\ExpenseApp\bin\Debug\net6.0\runtimes\osx\native\libmongocrypt.dylib
 F:\Backend-Training\.Net\ExpenseApp\ExpenseApp\bin\Debug\net6.0\runtimes\win\native\mongocrypt.dll
+F:\Backend-Training\.Net\ExpenseApp\ExpenseApp\obj\Debug\net6.0\ExpenseApp.sourcelink.json
