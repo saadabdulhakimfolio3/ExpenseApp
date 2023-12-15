@@ -1,4 +1,5 @@
-﻿using ExpenseApp.Config;
+﻿using Amazon.Runtime.Internal;
+using ExpenseApp.Config;
 using ExpenseApp.Data.Contracts;
 using ExpenseApp.Models;
 using MongoDB.Driver;
@@ -20,6 +21,7 @@ public class MongoDataProvider : IDataProvider
     }
     public bool CreateExpense(Expense request)
     {
+        Console.WriteLine(request.Description);
         _expenses.InsertOne(request);
         return true;
     }
@@ -31,17 +33,21 @@ public class MongoDataProvider : IDataProvider
     }
     public Expense GetExpense(string id)
     {
+        Console.WriteLine(id);
         return _expenses.Find(expense => expense.Id == id).FirstOrDefault();
     }
 
     public bool DeleteExpense(string id)
     {
+        Console.WriteLine(id);
         _expenses.DeleteOne(expense => expense.Id == id);
         return true;
     }
 
     public bool UpsertExpense(string id, Expense expense)
     {
+        Console.WriteLine(id);
+        Console.WriteLine(expense.Description);
         _expenses.ReplaceOne(expense => expense.Id == id, expense);
         return true;
     }
