@@ -5,7 +5,7 @@ namespace ExpenseApp.Data.Contracts;
 public interface IDataProvider
 {
     bool CreateExpense(Expense request);
-    public List<Expense> Get();
+    public List<Expense> GetExpenses();
     public Expense GetExpense(string id);
     public bool DeleteExpense(string id);
     public bool UpsertExpense(string id, Expense expense);

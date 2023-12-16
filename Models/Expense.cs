@@ -24,7 +24,7 @@ namespace ExpenseApp.Models
         [BsonElement("ammount")]
         public int Ammount { get; set; }
 
-        public Expense( string description, string category, DateTime date, DateTime lastModified, int ammount)
+        public Expense(string description, string category, DateTime date, DateTime lastModified, int ammount)
         {
             Description = description;
             Category = category;

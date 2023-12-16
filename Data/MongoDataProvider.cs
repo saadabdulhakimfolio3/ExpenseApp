@@ -14,6 +14,8 @@ public class MongoDataProvider : IDataProvider
 
     public MongoDataProvider(IMongoClient mongoClient,ExpenseStoreDatabaseSettings dbSettings)
     {
+        Console.WriteLine(dbSettings.ConnectionString);
+        Console.WriteLine(dbSettings.DatabaseName);
         _client = mongoClient;
         _settings = dbSettings;
         IMongoDatabase database = _client.GetDatabase(dbSettings.DatabaseName);
@@ -27,14 +29,15 @@ public class MongoDataProvider : IDataProvider
     }
 
     // Getting expense from database.
-    public List<Expense> Get()
+    public List<Expense> GetExpenses()
     {
         return _expenses.Find(expense => true).ToList();
     }
     public Expense GetExpense(string id)
     {
         Console.WriteLine(id);
-        return _expenses.Find(expense => expense.Id == id).FirstOrDefault();
+        Expense expense = _expenses.Find(expense => expense.Id == id).First();
+        return expense;
     }
 
     public bool DeleteExpense(string id)
@@ -47,7 +50,6 @@ public class MongoDataProvider : IDataProvider
     public bool UpsertExpense(string id, Expense expense)
     {
         Console.WriteLine(id);
-        Console.WriteLine(expense.Description);
         _expenses.ReplaceOne(expense => expense.Id == id, expense);
         return true;
     }

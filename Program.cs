@@ -20,9 +20,14 @@ var builder = WebApplication.CreateBuilder(args);
     // Prevents reinstantiation per request.
     // Created for entire lifetime of the application.
     var dbSettings = builder.Configuration.GetSection(nameof(ExpenseStoreDatabaseSettings)).Get<ExpenseStoreDatabaseSettings>();
+    
+    // Creating MongoClient with a connection to database.
     builder.Services.AddSingleton<IMongoClient>(s => new MongoClient(dbSettings.ConnectionString));
+    // Injecting Expense Service.
     builder.Services.AddSingleton<IExpenseService, ExpenseService>();
+    // Injecting MongoDataProvder.
     builder.Services.AddSingleton<IDataProvider, MongoDataProvider>();
+    // Injecting DB Settings.
     builder.Services.AddSingleton(dbSettings);
 
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

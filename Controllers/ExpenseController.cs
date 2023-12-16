@@ -50,7 +50,7 @@ namespace ExpenseApp.Controllers
             return CreatedAtAction(actionName : nameof(GetExpense), routeValues: new {id = expense.Id}, value: response);
         }
 
-        [HttpGet("{id:guid}")]
+        [HttpGet("{id}")]
         public IActionResult GetExpense(string id)
         {
             // Getting expense from our database.
@@ -68,7 +68,31 @@ namespace ExpenseApp.Controllers
             return Ok(response);
         }
 
-        [HttpPut("{id:guid}")]
+        [HttpGet("feed")]
+        public IActionResult GetExpenses()
+        {
+            // Getting expense from our database.
+            List<Expense> expenses = _expenseService.GetExpenses();
+
+            List<ExpenseResponse> responses = new List<ExpenseResponse>();
+
+            foreach (Expense expense in expenses)
+            {
+                // Converting entry into response.
+                ExpenseResponse response = new ExpenseResponse(
+                    expense.Id,
+                    expense.Description,
+                    expense.Category,
+                    expense.Date,
+                    expense.LastModified,
+                    expense.Ammount);
+                responses.Add(response);
+            }
+
+            return Ok(responses);
+        }
+
+        [HttpPut("{id}")]
         public IActionResult UpsertExpenses(string id, UpsertExpenseRequest request)
         {
             // Creating new expense.
@@ -87,8 +111,8 @@ namespace ExpenseApp.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id:guid}")]
-        public IActionResult UpsertExpenses(string id)
+        [HttpDelete("{id}")]
+        public IActionResult DeleteExpense(string id)
         {
             // Deleting expense from database.
             _expenseService.DeleteExpense(id);

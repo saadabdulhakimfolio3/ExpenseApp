@@ -23,9 +23,9 @@ namespace ExpenseApp.Services
         }
 
         // Getting expense from database.
-        public List<Expense> Get()
+        public List<Expense> GetExpenses()
         {
-            return _dataProvider.Get();
+            return _dataProvider.GetExpenses();
         }
         public Expense GetExpense(string id)
         {
